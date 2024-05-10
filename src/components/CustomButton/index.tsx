@@ -1,5 +1,5 @@
 
-import { ButtonPropsType } from "../types"
+import { ButtonPropsType } from "../../types"
 
 //React'ta ts ile proje gelistiriyorsak mutlaka
 //componentlerin aldigi proplarin tipi tanimlanmali
