@@ -1,6 +1,9 @@
 import { CarType } from "../../types"
 import { generateImage } from "../../utils/generateImage";
 import CustomButton from "../CustomButton";
+import { motion } from 'framer-motion';
+import DetailModal from "../DetailModal";
+import { useState } from "react";
 
 
 interface IcardProps {
@@ -8,17 +11,20 @@ interface IcardProps {
 }
 
 const Card = ({ car }: IcardProps) => {
-const translate={
-    fwd:"Önden Çeker",
-    rwd:"Arkadan İtişli", "4wd" : "4 Çeker",
-    awd:"4 Çeker",
-}
+    const [isModalOpen,setIsModalOpen]=useState<boolean>(false)
+    const translate = {
+        fwd: "Önden Çeker",
+        rwd: "Arkadan İtişli", "4wd": "4 Çeker",
+        awd: "4 Çeker",
+    }
 
 
 
-    
+
     return (
-        <div className="car-card group">
+        <motion.div initial={{ scale: 0.5, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            className="car-card group">
 
             {/*Araba Ismi */}
             <h2 className="car-card__content-title">
@@ -60,11 +66,15 @@ const translate={
                 </div>
                 {/* Butonlar */}
                 <div className="group-hover:flex hidden w-full">
-                    <CustomButton title="Daha Fazla" designs="w-full py-[16px]" />
+                    <CustomButton title="Daha Fazla" designs="w-full py-[16px]" 
+                    rIcon="/right-arrow.svg"
+                    handleClick={()=> setIsModalOpen(true)}
+                    />
                 </div>
             </div>
-            {/* Model*/}
-        </div>
+            {/* Modal*/}
+            <DetailModal/>
+        </motion.div>
 
     )
 }
