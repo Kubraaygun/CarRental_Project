@@ -9,7 +9,7 @@ export type ButtonPropsType = {
     rIcon?: string;
 
     //tiklanma olayinda calisan fonksiyon
-    handleClick: MouseEventHandler<HTMLButtonElement>
+    handleClick?: MouseEventHandler<HTMLButtonElement>
 }
 
 //api'dan gelen arac verisinin tipi
