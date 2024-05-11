@@ -73,7 +73,7 @@ const Card = ({ car }: IcardProps) => {
                 </div>
             </div>
             {/* Modal*/}
-            <DetailModal/>
+            <DetailModal car={car} isOpen={isModalOpen} close={()=>setIsModalOpen(false)}/>
         </motion.div>
 
     )
