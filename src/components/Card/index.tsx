@@ -1,5 +1,7 @@
 import { CarType } from "../../types"
+import { generateImage } from "../../utils/generateImage";
 import CustomButton from "../CustomButton";
+
 
 interface IcardProps {
     car: CarType;
@@ -11,6 +13,9 @@ const translate={
     rwd:"Arkadan İtişli", "4wd" : "4 Çeker",
     awd:"4 Çeker",
 }
+
+
+
     
     return (
         <div className="car-card group">
@@ -28,7 +33,7 @@ const translate={
 
             {/*Resim Alani */}
             <div className="relative w-full h-40 my-3">
-                <img src="/hero.png" alt="car" className="w-full h-full object-contain" />
+                <img src={generateImage(car)} alt="car" className="w-full h-full object-contain" />
             </div>
 
 
