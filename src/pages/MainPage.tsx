@@ -5,22 +5,28 @@ import SearchBar from "../components/SearchBar"
 import { fetchCars } from "../utils/fetchCars"
 import { CarType } from "../types"
 import Card from "../components/Card"
+import { useSearchParams } from "react-router-dom"
 
 const MainPage = () => {
+
     //useState bizden state'de tutacagimiz verinin tipini ister
     //bizde "generic" yardimiyla ya bir CarType dizisi yada henuz
     //api'dan veri gelmediyse null tipinde olabilecegini soyledik
     const [cars, setCars] = useState<CarType[] | null>(null)
     const [isError, setIsError] = useState<boolean>(false)
-
-
+    //url'deki arama parametrelerine erisme
+    const [params]=useSearchParams()
+//parametreler her degistiginde api istegi atiyoruz
     useEffect(() => {
-        fetchCars()
+        //url'deki butun arama parametrelerini objeye cevirdim
+      const paramsObj= Object.fromEntries(params.entries())
+      console.log(paramsObj)
+        fetchCars(paramsObj)
             //istek basarili olursa
             .then((data) => setCars(data))
             //istek basarisiz olursa
             .catch(() => setIsError(true))
-    }, [])
+    }, [params])
     return (
         <div><Hero />
             <div id="catalogue" className="mt-12 padding-x padding-y max-width">
