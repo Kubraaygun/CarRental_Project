@@ -6,6 +6,7 @@ import { fetchCars } from "../utils/fetchCars"
 import { CarType } from "../types"
 import Card from "../components/Card"
 import { useSearchParams } from "react-router-dom"
+import ShowMore from "../components/ShowMore"
 
 const MainPage = () => {
 
@@ -15,12 +16,12 @@ const MainPage = () => {
     const [cars, setCars] = useState<CarType[] | null>(null)
     const [isError, setIsError] = useState<boolean>(false)
     //url'deki arama parametrelerine erisme
-    const [params]=useSearchParams()
-//parametreler her degistiginde api istegi atiyoruz
+    const [params] = useSearchParams()
+    //parametreler her degistiginde api istegi atiyoruz
     useEffect(() => {
         //url'deki butun arama parametrelerini objeye cevirdim
-      const paramsObj= Object.fromEntries(params.entries())
-      console.log(paramsObj)
+        const paramsObj = Object.fromEntries(params.entries())
+        console.log(paramsObj)
         fetchCars(paramsObj)
             //istek basarili olursa
             .then((data) => setCars(data))
@@ -64,9 +65,11 @@ const MainPage = () => {
                         </div>
                     ) : (
                         <section>
-                            <div className="home__cars-wrapper">{cars.map((car,i) => (
-                                <Card key={i} car={car}/>
+                            <div className="home__cars-wrapper">{cars.map((car, i) => (
+                                <Card key={i} car={car} />
                             ))}</div>
+
+                            <ShowMore />
                         </section>
                     )
                 }

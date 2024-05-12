@@ -16,7 +16,7 @@ const url:URL= new URL ('https://cdn.imagin.studio/getimage');
 //url'e dinamik bir sekilde arama parametresi ekleme
 url.searchParams.append('customer','hrjavascript-mastery');
 url.searchParams.append('make', car.make);
-url.searchParams.append('modelFamily', car.model);
+url.searchParams.append('modelFamily', car.model.split('/')[0]);
 url.searchParams.append('zoomType','fulscreen');
 
 //aci varsa aciyi ekler
