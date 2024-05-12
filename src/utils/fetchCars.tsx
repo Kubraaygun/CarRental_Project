@@ -11,6 +11,7 @@ const options = {
 type FilterType = {
     make?: string,
     model?: string,
+    limit?:string,
 }
 
 export async function fetchCars(filters: FilterType): Promise<CarType[]> {
@@ -18,9 +19,9 @@ export async function fetchCars(filters: FilterType): Promise<CarType[]> {
     //cunku objenin bu degerleri tanimsizda gelebilir
     //tanimsiz geldigi durumda direkt bmw arattik
     const {
-        make = "bmw", model = "m3"
+        make = "bmw", model = "m3", limit='5'
     } = filters;
-    const res = await fetch(`https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${make}&modelFamily=${model}`, options)
+    const res = await fetch(`https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${make}&modelFamily=${model}&limit=${limit}`, options)
 
     const data = await res.json()
     return data;
