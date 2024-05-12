@@ -7,6 +7,8 @@ import { CarType } from "../types"
 import Card from "../components/Card"
 import { useSearchParams } from "react-router-dom"
 import ShowMore from "../components/ShowMore"
+import { fuels, years } from "../constants"
+
 
 const MainPage = () => {
 
@@ -39,8 +41,8 @@ const MainPage = () => {
                 <div className="home__filters">
                     <SearchBar />
                     <div className="home__filter-container">
-                        <CustomFilter />
-                        <CustomFilter />
+                        <CustomFilter paramName={"fuel_type"} title="Yakıt Tipi" options={fuels}  />
+                        <CustomFilter paramName={"year"} title="Üretim Yılı" options={years} />
                     </div>
                 </div>
                 {/*Araba Listesi
