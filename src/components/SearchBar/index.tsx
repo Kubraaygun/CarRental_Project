@@ -11,11 +11,7 @@ const SearchButton = ({ designs }: { designs: string }) =>
 </button>
 )
 
-
-
-
 //2.bilesen
-
 const SearchBar = () => {
   const [make, setMake] = useState<string>('')
   const [model, setModel] = useState<string>('');
@@ -48,14 +44,14 @@ const SearchBar = () => {
   return (
     <form onSubmit={handleSubmit} className="searchbar gap-3">
       <div className="searchbar__item">
-        <ReactSelect onChange={(e) => e && setMake(e.value)} className="w-full text-black" options={options} />
+        <ReactSelect defaultInputValue={searchParams.get('make')!} onChange={(e) => e && setMake(e.value)} className="w-full text-black" options={options} />
         <SearchButton designs="sm:hidden" />
       </div>
 
       <div className="searchbar__item">
         <img width={25} src="/model-icon.png" alt="araç" className="absolute ml-4" />
 
-        <input onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+        <input defaultValue={searchParams.get("model")!} onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setModel(e.target.value)
         } placeholder="örn:Civic" type="text" className="searchbar__input rounded text-black" />
         <SearchButton designs="sm:hidden" />
